@@ -22,10 +22,10 @@ else
   cd $project
 fi
 
-project=${PWD##*/}
+current_dir=${PWD##*/}
 
-if ! tmux attach -t $project
+if ! tmux attach -t $current_dir
 then
-    echo "No tmux session exists for $project. Creating now..."
-    tmux new -s $project
+    echo "No tmux session exists for $current_dir. Creating now..."
+    tmux new -s $current_dir
 fi

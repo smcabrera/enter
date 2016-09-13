@@ -1,0 +1,60 @@
+#!/bin/sh
+# Assumes tmux sessions will have the same name as their projects
+# and that those projects are all housed in a "projects" folder in the user's home folder
+# change "project_dir" to the path to your projects folder (e.g. "$HOME/code", "$HOME/projects" etc.)
+
+projects_dir=$HOME/workspace # path/to/projects/dir/here
+
+#project=$(ls -d */ | pick)
+#cd $projects_dir/$project
+
+cd $projects_dir
+
+if [ $1 ]
+then
+  if ! cd $1
+  then
+    echo "Invalid project directory."
+    echo "$1"
+    echo "Edit the file located at"
+    whereis $0
+    echo "and include the location of your projects directory"
+    exit
+  fi
+else
+  project=$(ls -d */ | pick)
+  cd $project
+fi
+
+project=${PWD##*/}
+
+if ! tmux attach -t $project
+then
+    echo "No tmux session exists for $project. Creating now..."
+    tmux new -s $project
+fi
+
+# TODO: Here's what it was before as a backup. Remove this comment once we get it working
+
+#project_dir=$HOME/workspace # path/to/projects/dir/here
+
+#if [ $1 ]
+#then
+  #if ! cd $project_dir/$1
+  #then
+    #echo "Incorrect project directory."
+    #echo "$project_dir/$1"
+    #echo "Edit the file located at"
+    #whereis $0
+    #echo "and include the location of your projects directory"
+    #exit
+  #fi
+#fi
+
+#current_dir=${PWD##*/}
+
+#if ! tmux attach -t $current_dir
+#then
+    #echo "No tmux session exists for $current_dir. Creating now..."
+    #tmux new -s $current_dir
+#fi

@@ -1,4 +1,6 @@
 # enter
+![usage](screencast.gif)
+
 Start hacking on your projects fast. Quickly select among your projects and open a tmux session for it. 
 
 For an explanation of the reason behind this little tool check out this [post](http://smcabrera.github.io/enter-enter/)

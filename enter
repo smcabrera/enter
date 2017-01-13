@@ -1,10 +1,12 @@
 #!/bin/sh
-# Assumes tmux sessions will have the same name as their projects
-# and that those projects are all housed in a "projects" folder in the user's home folder
+# Assumes tmux sessions will have the same name as their projects root directories
 
-projects_dir=$HOME/workspace # path/to/projects/dir/here
+if ! [ $PROJECTS_DIR ] # A folder in $HOME like "code" or "projects"
+then
+  PROJECTS_DIR=workspace # Default to workspace if environment variable isn't defined
+fi
 
-cd $projects_dir
+cd $HOME/$PROJECTS_DIR
 
 if [ $1 ]
 then
@@ -18,7 +20,7 @@ then
     exit
   fi
 else
-  project=$(ls -d */ | pick)
+   project=$(ls -d $HOME/$PROJECTS_DIR/*/ | grep -E -o "$PROJECTS_DIR\/.*" | grep -E -o '\/.*\/' | cut -d "/" -f 2 | pick)
   cd $project
 fi
 

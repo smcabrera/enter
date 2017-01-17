@@ -18,9 +18,9 @@ enter can be installed using brew
 Haven't added this to any linux package managers yet but you can download the latest release here and create an executable 
 
 ```
-$ wget https://github.com/smcabrera/enter/archive/1.0.0.tar.gz
-$ tar -xvzf 1.0.0.tar.gz
-$ cd enter-1.0.0
+$ wget https://github.com/smcabrera/enter/archive/1.1.0.tar.gz
+$ tar -xvzf 1.1.0.tar.gz
+$ cd enter-1.1.0
 ```
 
 And then move `enter` to an executable path like `~/bin/`
